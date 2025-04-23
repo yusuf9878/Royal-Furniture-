@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Royal Furniture</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+  overflow-x: hidden;
+}
+
+
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-image: ('bg.jpeg');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position:center;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      padding: 0.9rem;
+      text-align: center;
+      margin-top:0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      
+    }
+
+    nav {
+      margin-top: 1px;
+    }
+
+    .nav-link {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideUp 1.2s ease forwards;
+    }
+
+    .nav-link li {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 8px rgba(242, 238, 238, 0.2);
+
+    }
+
+    .nav-link li:hover {
+      background: #fff;
+      transform: translateY(-3px) scale(1.05);
+      color: #292E49;
+    }
+
+    .slider-wrapper {
+      overflow: hidden;
+      width: 100%;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .img-slide {
+      display: flex;
+      gap: 20px;
+      animation: scroll 10s linear infinite;
+    }
+
+    .img-slide img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-1800px);
+      }
+    }
+
+    .slider-wrapper::before,
+    .slider-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .slider-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, #292E49, transparent);
+    }
+
+    .slider-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, #292E49, transparent);
+    }
+
+    h2 {
+      margin-top: 20px;
+      font-size: 2rem;
+      text-align: center;
+      letter-spacing: 1px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .pslide{
+      margin-top: 10px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    footer {
+      bottom:0;
+      color:black;
+      padding: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      text-align: center;
+      position: fixed;
+      
+    }
+.buttons{
+        margin: 5px;
+        gap: 5px;
+        display: flex;
+        padding: 7px;
+        margin-top: 20px;
+        animation: fadeIn 3s ease forwards;
+        }
+
+        button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #292E49;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 8px 0;
+  font-weight: 600;
+  flex: 1 1 150px;
+  max-width: 200px;
+}
+     button:hover {
+        background-color: #292E49;
+        color: #fff;
+        }
+    
+        @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-120px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+    
+        @keyframes slideUp {
+        from {
+            transform: translateY(120px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  color: #292E49;
+  padding: 20px 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+  color: #292E49;
+}
+
+.modal-content p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.modal-content button {
+  background-color: #25D366;
+  color: white;
+  font-weight: bold;
+}
+
+.modal-content button:hover {
+  background-color: #128C7E;
+  color: #fff;
+}
+
+.close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #292E49;
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Royal Furniture</h1>
+  </header>
+
+  <nav>
+    <ul class="nav-link">
+      <li>Home</li>
+      <li>Products</li>
+      <li id="contact">Contact</li>
+    </ul>
+  </nav>
+<div id="contactmodal" class="modal">
+  <div class="modal-content">
+    <span class="close">×</span>
+    <h3>Contact Information</h3>
+    <p><strong>Name:</strong> Mo. Nafees</p>
+    <p><strong>Address:</strong> Cant Road Ompurwa Ramdevi petrol pump hero Agency, 208001</p>
+    <p><strong>Mobile:</strong> +91 9628073315</p>
+    <a href="https://wa.me/919628073315" target="_blank">
+      <button>Chat on WhatsApp</button>
+    </a>
+  </div>
+</div>
+
+  <div class="slider-wrapper">
+    <div class="img-slide">
+      <img src="1.jpeg" alt="">
+      <img src="2.jpeg" alt="">
+      <img src="3.jpeg" alt="">
+      <img src="4.jpeg" alt="">
+      <img src="5.jpeg" alt="">
+      <img src="6.jpeg" alt="">
+
+    </div>
+  </div>
+
+  <h2>Welcome to Royal Furniture</h2>
+  <p class="pslide">Your one-stop shop for all your furniture needs.</p>
+  
+  <div class="buttons">
+    <button>5 SEATER</button>
+    <button>7 SEATER</button>
+    <button>9 SEATER</button>
+    <button>TABLE</button>
+  </div>
+  <footer>
+    &copy; Created by Yusuf Khan, all rights reserved.
+  </footer>
+
+<script>
+ const contact = document.getElementById("contact");
+const modal = document.getElementById("contactmodal");
+const closeBtn = document.querySelector(".close");
+
+contact.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+const buttons = document.querySelectorAll('.buttons button');
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    Swal.fire({
+      icon: 'info',
+      title: 'Coming Soon!',
+      text: 'This feature will be available shortly.',
+      confirmButtonText: 'Okay'
+    });
+  });
+});
+
+</script>
+</body>
+</html>
